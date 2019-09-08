@@ -24,7 +24,9 @@
   "homepage": "https://github.com/nodejayes/reactive-action-transport#readme",
   "dependencies": {
     "reactive-action-transport-data": "^1.0.0",
-    "ts-tooling": "^1.0.14"
+    "ts-tooling": "^1.0.14",
+    "winston": "^3.2.1",
+    "ws": "^7.1.2"
   },
   "devDependencies": {
     "typescript": "^3.6.2",
