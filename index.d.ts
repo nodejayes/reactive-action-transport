@@ -1,9 +1,9 @@
-declare module 'src/logger' {
+declare module 'logger' {
 	import * as winston from 'winston';
 	export const LOGGER: winston.Logger;
 
 }
-declare module 'src/server' {
+declare module 'server' {
 	/// <reference types="node" />
 	import * as WebSocket from 'ws';
 	import { ServerOptions } from 'ws';
@@ -56,5 +56,9 @@ declare module 'src/server' {
 	    private onSocketError;
 	    private onSocketClose;
 	}
+
+}
+declare module 'reactive-action-transport' {
+	export * from 'server';
 
 }
