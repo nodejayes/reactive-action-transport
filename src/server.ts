@@ -4,8 +4,7 @@ import {Chars, Dictionary, EventHandler, List, LZCompression} from 'ts-tooling';
 import {IncomingMessage} from 'http';
 import * as uuidv4 from 'uuid/v4';
 import {LOGGER} from "./logger";
-import {IWebSocketAction} from 'reactive-action-transport-data';
-import {DispatchType} from "dispatch-type";
+import {IWebSocketAction, DispatchType} from 'reactive-action-transport-data';
 
 export class ServerSocket {
     Id: Chars;
