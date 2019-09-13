@@ -1,8 +1,8 @@
 {
   "name": "reactive-action-transport",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
-  "main": "reactive-action-transport.js",
+  "main": "dist/reactive-action-transport.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
