@@ -76,7 +76,7 @@ export class WebSocketServer<T> {
 
     public SendToSocket(socket: List<IWebSocketContext<T>> | IWebSocketContext<T>, data: IWebSocketAction<any>): void {
         if (data.dispatchOn !== DispatchType.CLIENT && data.dispatchOn !== DispatchType.BOTH) {
-            LOGGER.warning(`action ${data.type} is not a Client Action nothing send!`);
+            LOGGER.warn(`action ${data.type} is not a Client Action nothing send!`);
             return;
         }
         LOGGER.info('send data to socket');
@@ -108,7 +108,7 @@ export class WebSocketServer<T> {
         const s = new ServerSocket(socket);
         const ctx = this.createContext(s, req);
         if (this.ValidateConnection && !this.ValidateConnection(ctx, req)) {
-            LOGGER.warning(`invalid connection from ${req.socket.address()}`);
+            LOGGER.warn(`invalid connection from ${req.socket.address()}`);
             return;
         }
         ctx.socket.Socket.on('message', (data) => this.onMessageReceive(data, ctx));
@@ -123,17 +123,17 @@ export class WebSocketServer<T> {
     private onMessageReceive(data: WebSocket.Data, ctx: IWebSocketContext<T>): void {
         const msg = (LZCompression.Decompress(new Chars(data.toString())) as IWebSocketAction<any>);
         if (!msg.type || (this.ValidateMessage && !this.ValidateMessage(ctx, msg))) {
-            LOGGER.warning('invalid message send:');
-            LOGGER.warning(msg);
+            LOGGER.warn('invalid message send:');
+            LOGGER.warn(msg);
             return;
         }
         if (msg.dispatchOn !== DispatchType.SERVER && msg.dispatchOn !== DispatchType.BOTH) {
-            LOGGER.warning(`no server action ${msg.type} nothing happen!`);
+            LOGGER.warn(`no server action ${msg.type} nothing happen!`);
             return;
         }
         const action = this._actions.TryGetValue(msg.type.ToChars());
         if (!action) {
-            LOGGER.warning(`action ${msg.type} not found nothing happen!`);
+            LOGGER.warn(`action ${msg.type} not found nothing happen!`);
             return;
         }
         action(msg.payload, ctx);
